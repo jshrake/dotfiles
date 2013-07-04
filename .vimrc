@@ -11,6 +11,10 @@ Bundle 'gmarik/vundle'
 Bundle 'tpope/vim-fugitive'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'octol/vim-cpp-enhanced-highlight'
+Bundle 'vim-scripts/a.vim'
 
 " Attempt to determine the type of a file based on name and contents
 filetype indent plugin on
@@ -52,3 +56,15 @@ let g:netrw_altv = 1
 
 "Change directory to the current buffer when opening files.
 set autochdir
+
+" Set colorscheme
+colorscheme Tomorrow-Night
+
+" syntastic settings
+let g:syntastic_cpp_checkers=['cpplint']
+let g:syntastic_cpp_no_default_include_dirs = 1
+let g:syntastic_cpp_compiler_options = '-std=c++11'
+
+" YCM settings
+let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
