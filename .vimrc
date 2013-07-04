@@ -1,5 +1,17 @@
 set nocompatible
 
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle 
+Bundle 'gmarik/vundle'
+
+Bundle 'tpope/vim-fugitive'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/nerdtree'
+
 " Attempt to determine the type of a file based on name and contents
 filetype indent plugin on
 
@@ -31,5 +43,12 @@ set autoindent
 set backspace=indent,eol,start
 
 " Brace auto-complete
-inoremap { {<CR><BS>}<Esc>ko
+" inoremap { {<CR><BS>}<Esc>ko
 
+" Hit enter in the file browser to open the selected
+" " file with :vsplit to the right of the browser.
+let g:netrw_browse_split = 2
+let g:netrw_altv = 1
+
+"Change directory to the current buffer when opening files.
+set autochdir
