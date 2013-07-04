@@ -61,10 +61,12 @@ set autochdir
 colorscheme Tomorrow-Night
 
 " syntastic settings
-let g:syntastic_cpp_checkers=['cpplint']
+let g:syntastic_cpp_checkers=['ycm']
 let g:syntastic_cpp_no_default_include_dirs = 1
 let g:syntastic_cpp_compiler_options = '-std=c++11'
 
 " YCM settings
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
+let g:ycm_register_as_syntastic_checker = 0
 nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
