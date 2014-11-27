@@ -6,42 +6,45 @@ set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
-" Misc Bundles
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-vinegar'
-Bundle 'tpope/vim-dispatch'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/syntastic'
-Bundle 'christoomey/vim-tmux-navigator'
+" Themes
+Plugin 'chriskempson/base16-vim'
 
-" C++ Bundles
-Bundle 'Mizuchi/STL-Syntax'
+" Misc Plugins
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-dispatch'
+Plugin 'kien/ctrlp.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
+Plugin 'christoomey/vim-tmux-navigator'
+
+" C++ Plugins
+Plugin 'Mizuchi/STL-Syntax'
 
 " Python
-Bundle 'jmcantrell/vim-virtualenv'
-Bundle 'tell-k/vim-autopep8'
+Plugin 'jmcantrell/vim-virtualenv'
+Plugin 'tell-k/vim-autopep8'
 
 " Ruby
-Bundle 'vim-ruby/vim-ruby'
-Bundle 'thoughtbot/vim-rspec'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'thoughtbot/vim-rspec'
 
 " tmux
-Bundle 'kikijump/tslime.vim'
+Plugin 'kikijump/tslime.vim'
 
 " Clojure
-Bundle 'guns/vim-clojure-static'
-Bundle 'tpope/vim-fireplace'
-Bundle 'kien/rainbow_parentheses.vim'
-Bundle 'tpope/vim-surround'
-Bundle 'tpope/vim-repeat'
-Bundle 'guns/vim-sexp'
-Bundle 'tpope/vim-sexp-mappings-for-regular-people'
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-fireplace'
+Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'guns/vim-sexp'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
 
 " Dash
-Bundle 'rizzatti/dash.vim'
+Plugin 'rizzatti/dash.vim'
 
 " Attempt to determine the type of a file based on name and contents
 filetype indent plugin on
@@ -77,7 +80,8 @@ set backspace=indent,eol,start
 set autochdir
 
 " Set colorscheme
-colorscheme Tomorrow-Night-Bright
+let base16colorspace=256  " Access colors present in 256 colorspace
+set background=dark
 
 " todo(jshrake): move this junk to separate files
 " syntastic settings
