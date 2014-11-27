@@ -11,27 +11,37 @@ Bundle 'gmarik/vundle'
 " Misc Bundles
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-vinegar'
-Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-dispatch'
 Bundle 'kien/ctrlp.vim'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'scrooloose/syntastic'
-Bundle 'vim-scripts/a.vim'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'Townk/vim-autoclose'
+Bundle 'christoomey/vim-tmux-navigator'
 
 " C++ Bundles
-Bundle 'vim-scripts/Cpp11-Syntax-Support'
-Bundle 'octol/vim-cpp-enhanced-highlight'
+Bundle 'Mizuchi/STL-Syntax'
 
-" Erlang Bundles
-Bundle 'jimenezrick/vimerl'
+" Python
+Bundle 'jmcantrell/vim-virtualenv'
+Bundle 'tell-k/vim-autopep8'
 
-" Golang Bundles
-Bundle 'jnwhiteh/vim-golang'
+" Ruby
+Bundle 'vim-ruby/vim-ruby'
+Bundle 'thoughtbot/vim-rspec'
 
-" Javascript
-Bundle 'pangloss/vim-javascript'
-Bundle 'moll/vim-node'
+" tmux
+Bundle 'kikijump/tslime.vim'
+
+" Clojure
+Bundle 'guns/vim-clojure-static'
+Bundle 'tpope/vim-fireplace'
+Bundle 'kien/rainbow_parentheses.vim'
+Bundle 'tpope/vim-surround'
+Bundle 'tpope/vim-repeat'
+Bundle 'guns/vim-sexp'
+Bundle 'tpope/vim-sexp-mappings-for-regular-people'
+
+" Dash
+Bundle 'rizzatti/dash.vim'
 
 " Attempt to determine the type of a file based on name and contents
 filetype indent plugin on
@@ -45,11 +55,6 @@ set wildmenu
 " Display line numbers
 set number
 
-" Indentation settings for using 2 spaces for a tab
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-
 " Command window height to 2 lines
 set cmdheight=2
 
@@ -57,42 +62,48 @@ set cmdheight=2
 set ignorecase
 set smartcase
 
-" Autoindent on
+" Autoindent on and other indentation settings
 set autoindent
+set tabstop=2
+set shiftwidth=2
+set softtabstop=2
+set smarttab
+set expandtab
 
 " Allow backspacing over autoindent, line breaks and start of insert
 set backspace=indent,eol,start
-
-" Brace auto-complete
-" inoremap { {<CR><BS>}<Esc>ko
-
-" Hit enter in the file browser to open the selected
-" " file with :vsplit to the right of the browser.
-let g:netrw_browse_split = 2
-let g:netrw_altv = 1
 
 "Change directory to the current buffer when opening files.
 set autochdir
 
 " Set colorscheme
-colorscheme Tomorrow-Night
+colorscheme Tomorrow-Night-Bright
 
+" todo(jshrake): move this junk to separate files
 " syntastic settings
 let g:syntastic_cpp_checkers=['ycm']
-let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_cpp_no_default_include_dirs = 1
 let g:syntastic_cpp_compiler_options = '-std=c++11'
-let g:syntastic_python_python_exe = 'python3'
+let g:syntastic_python_python_exec = 'python'
+let g:syntastic_python_checkers=['flake8']
+let g:syntastic_check_on_open=1
+let g:syntastic_enable_signs=1
 
 " YCM settings
-" let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_autoclose_preview_window_after_completion = 1
-nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " Clang-format.py
-map <C-K> :pyf ~/dev/llvm/tools/clang/tools/clang-format/clang-format.py<CR>
-imap <C-K> <ESC>:pyf ~/dev/llvm/tools/clang/tools/clang-format/clang-format.py<CR>i
+map <C-K> :pyf /Library/Caches/Homebrew/llvm35--clang--git/tools/clang-format/clang-format.py<CR>
+imap <C-K> <ESC>:pyf /Library/Caches/Homebrew/llvm35--clang--git/tools/clang-format/clang-format.py<CR>i
 
-" gofmt on autosave
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
+" Better make
+set makeprg=[[\ -f\ Makefile\ ]]\ &&\ make\\\\|\\\|\ make\ -C\ ..
+
+" Enable rainbow parentheses for all buffers
+augroup rainbow_parentheses
+  au!
+  au VimEnter * RainbowParenthesesActivate
+  au BufEnter * RainbowParenthesesLoadRound
+  au BufEnter * RainbowParenthesesLoadSquare
+  au BufEnter * RainbowParenthesesLoadBraces
+augroup END

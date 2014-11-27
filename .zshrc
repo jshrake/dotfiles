@@ -1,4 +1,4 @@
-# Path to your oh-my-zsh configuration.
+# Path to your oh-my-zsh configuration.  
 ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
@@ -45,13 +45,16 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export GOROOT=`go env GOROOT`
-export GOPATH=$HOME/go
-mypath=/usr/local/bin:/usr/local/sbin:~/.cabal/bin:/usr/texbin:$GOROOT/bin:$GOPATH/bin
-export PATH=$mypath:$PATH
-
 alias make='nocorrect make' 
-alias erl='nocorrect erl'
-alias scala='nocorrect scala'
+export CXX="clang++-3.5 -stdlib=libc++"
+export CXXFLAGS="${CXXFLAGS} -nostdinc++ -I/usr/local/lib/llvm-3.5/include/c++/v1"
+export LDFLAGS="${LDFLAGS} -L/usr/local/lib/llvm-3.5/usr/lib"
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+# Customize PATH
+export CABAL_BIN_PATH=/Users/justin/.cabal/bin
+export PATH=CABAL_BIN_PATH:$PATH
+
+
+# tmux
+alias tmux="TERM=screen-256color-bce tmux"
