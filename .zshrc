@@ -5,7 +5,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="robbyrussell"
+ZSH_THEME="miloshadzic"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -47,7 +47,7 @@ source $ZSH/oh-my-zsh.sh
 # Customize to your needs...
 alias make='nocorrect make' 
 export CXX="clang++-3.5 -stdlib=libc++"
-export CXXFLAGS="${CXXFLAGS} -nostdinc++ -I/usr/local/lib/llvm-3.5/include/c++/v1"
+export CXXFLAGS="${CXXFLAGS} -I/usr/local/lib/llvm-3.5/include/c++/v1"
 export LDFLAGS="${LDFLAGS} -L/usr/local/lib/llvm-3.5/usr/lib"
 
 

@@ -21,30 +21,16 @@ Plugin 'scrooloose/syntastic'
 Plugin 'christoomey/vim-tmux-navigator'
 
 " C++ Plugins
-Plugin 'Mizuchi/STL-Syntax'
+Plugin 'rhysd/vim-clang-format'
 
-" Python
-Plugin 'jmcantrell/vim-virtualenv'
-Plugin 'tell-k/vim-autopep8'
-
-" Ruby
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'thoughtbot/vim-rspec'
-
-" tmux
-Plugin 'kikijump/tslime.vim'
-
-" Clojure
-Plugin 'guns/vim-clojure-static'
-Plugin 'tpope/vim-fireplace'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'guns/vim-sexp'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+" rust
+Plugin 'wting/rust.vim'
 
 " Dash
 Plugin 'rizzatti/dash.vim'
+
+" Cmake
+Plugin 'jalcine/cmake.vim'
 
 " Attempt to determine the type of a file based on name and contents
 filetype indent plugin on
@@ -81,7 +67,7 @@ set autochdir
 
 " Set colorscheme
 let base16colorspace=256  " Access colors present in 256 colorspace
-set background=dark
+colorscheme base16-summerfruit
 
 " todo(jshrake): move this junk to separate files
 " syntastic settings
@@ -96,18 +82,5 @@ let g:syntastic_enable_signs=1
 " YCM settings
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-" Clang-format.py
-map <C-K> :pyf /Library/Caches/Homebrew/llvm35--clang--git/tools/clang-format/clang-format.py<CR>
-imap <C-K> <ESC>:pyf /Library/Caches/Homebrew/llvm35--clang--git/tools/clang-format/clang-format.py<CR>i
-
 " Better make
 set makeprg=[[\ -f\ Makefile\ ]]\ &&\ make\\\\|\\\|\ make\ -C\ ..
-
-" Enable rainbow parentheses for all buffers
-augroup rainbow_parentheses
-  au!
-  au VimEnter * RainbowParenthesesActivate
-  au BufEnter * RainbowParenthesesLoadRound
-  au BufEnter * RainbowParenthesesLoadSquare
-  au BufEnter * RainbowParenthesesLoadBraces
-augroup END
