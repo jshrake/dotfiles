@@ -15,15 +15,13 @@ Plugin 'tpope/vim-dispatch'
 Plugin 'kien/ctrlp.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'terryma/vim-multiple-cursors'
-
+Plugin 'rking/ag.vim'
 " C++ Plugins
 Plugin 'rhysd/vim-clang-format'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
-
 " Dash
 Plugin 'rizzatti/dash.vim'
-
 "All of your Plugins must be added before the following line
 call vundle#end()         " required
 filetype indent plugin on " required
