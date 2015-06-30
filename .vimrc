@@ -1,39 +1,32 @@
-set nocompatible
+set nocompatible " required for vundle
+filetype off " required for vundle
 
-filetype off
-
+" set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
 " let Vundle manage Vundle 
 Plugin 'gmarik/vundle'
-
 " Themes
 Plugin 'chriskempson/base16-vim'
-
 " Misc Plugins
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-dispatch'
 Plugin 'kien/ctrlp.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
 Plugin 'christoomey/vim-tmux-navigator'
+Plugin 'terryma/vim-multiple-cursors'
 
 " C++ Plugins
 Plugin 'rhysd/vim-clang-format'
-
-" rust
-Plugin 'wting/rust.vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/syntastic'
 
 " Dash
 Plugin 'rizzatti/dash.vim'
 
-" Cmake
-Plugin 'jalcine/cmake.vim'
-
-" Attempt to determine the type of a file based on name and contents
-filetype indent plugin on
+"All of your Plugins must be added before the following line
+call vundle#end()         " required
+filetype indent plugin on " required
 
 " Enable syntax highlighting
 syntax on
@@ -67,15 +60,13 @@ set autochdir
 
 " Set colorscheme
 let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-summerfruit
+colorscheme base16-monokai
 
 " todo(jshrake): move this junk to separate files
 " syntastic settings
 let g:syntastic_cpp_checkers=['ycm']
 let g:syntastic_cpp_no_default_include_dirs = 1
 let g:syntastic_cpp_compiler_options = '-std=c++11'
-let g:syntastic_python_python_exec = 'python'
-let g:syntastic_python_checkers=['flake8']
 let g:syntastic_check_on_open=1
 let g:syntastic_enable_signs=1
 
@@ -83,4 +74,8 @@ let g:syntastic_enable_signs=1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " Better make
-set makeprg=[[\ -f\ Makefile\ ]]\ &&\ make\\\\|\\\|\ make\ -C\ ..
+"set makeprg=[[\ -f\ Makefile\ ]]\ &&\ make\\\\|\\\|\ make\ -C\ ..
+"set makeprg=[[\ -f\ Makefile\ ]]\ &&\ make\\\\|\\\|\ make\ -C\ ..
+":let &makeprg='[[ -d build ]] && ninja -C build || ninja -C ../build'
+:let &makeprg='ninja -C ../build'
+

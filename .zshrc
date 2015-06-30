@@ -6,6 +6,7 @@ ZSH=$HOME/.oh-my-zsh
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="miloshadzic"
+setopt correct
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -46,15 +47,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 alias make='nocorrect make' 
-export CXX="clang++-3.5 -stdlib=libc++"
-export CXXFLAGS="${CXXFLAGS} -I/usr/local/lib/llvm-3.5/include/c++/v1"
-export LDFLAGS="${LDFLAGS} -L/usr/local/lib/llvm-3.5/usr/lib"
-
-
-# Customize PATH
-export CABAL_BIN_PATH=/Users/justin/.cabal/bin
-export PATH=CABAL_BIN_PATH:$PATH
-
 
 # tmux
 alias tmux="TERM=screen-256color-bce tmux"
