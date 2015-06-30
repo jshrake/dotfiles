@@ -2,10 +2,10 @@ set nocompatible " required for vundle
 filetype off " required for vundle
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 " let Vundle manage Vundle 
-Plugin 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 " Themes
 Plugin 'chriskempson/base16-vim'
 " Misc Plugins
