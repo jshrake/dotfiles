@@ -12,16 +12,31 @@ Plugin 'chriskempson/base16-vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
 Plugin 'kien/ctrlp.vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Plugin 'terryma/vim-multiple-cursors'
 Plugin 'rking/ag.vim'
+Plugin 'vim-scripts/ctags.vim'
+Plugin 'vim-scripts/taglist.vim'
 " C++ Plugins
 Plugin 'rhysd/vim-clang-format'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'scrooloose/syntastic'
+Plugin 'rdnetto/YCM-Generator'
+Plugin 'jeaye/color_coded'
+" Clojure Plugins
+Plugin 'vim-scripts/VimClojure'
+Plugin 'tpope/vim-fireplace'
+Plugin 'venantius/vim-cljfmt'
+Plugin 'tpope/vim-sexp-mappings-for-regular-people'
+Plugin 'guns/vim-sexp'
 " Dash
 Plugin 'rizzatti/dash.vim'
+" Elm
+Plugin 'lambdatoast/elm.vim'
+
 "All of your Plugins must be added before the following line
 call vundle#end()         " required
 filetype indent plugin on " required
@@ -60,20 +75,20 @@ set autochdir
 let base16colorspace=256  " Access colors present in 256 colorspace
 colorscheme base16-monokai
 
-" todo(jshrake): move this junk to separate files
-" syntastic settings
-let g:syntastic_cpp_checkers=['ycm']
-let g:syntastic_cpp_no_default_include_dirs = 1
-let g:syntastic_cpp_compiler_options = '-std=c++11'
-let g:syntastic_check_on_open=1
-let g:syntastic_enable_signs=1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
 
-" YCM settings
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:ycm_show_diagnostics_ui = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 " Better make
-"set makeprg=[[\ -f\ Makefile\ ]]\ &&\ make\\\\|\\\|\ make\ -C\ ..
-"set makeprg=[[\ -f\ Makefile\ ]]\ &&\ make\\\\|\\\|\ make\ -C\ ..
-":let &makeprg='[[ -d build ]] && ninja -C build || ninja -C ../build'
-:let &makeprg='ninja -C ../build'
+:let &makeprg='[[ -d build ]] &&cmake --build build || cmake --build ../build'
 
+let mapleader = ","
+set tags=./tags,tags;$HOME
+nnoremap <leader>. :CtrlPTag<cr>
