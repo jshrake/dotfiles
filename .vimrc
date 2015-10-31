@@ -1,94 +1,126 @@
 set nocompatible " required for vundle
 filetype off " required for vundle
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle 
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 " Themes
-Plugin 'chriskempson/base16-vim'
+Plug 'chriskempson/base16-vim'
 " Misc Plugins
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-vinegar'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'kien/ctrlp.vim'
-Plugin 'christoomey/vim-tmux-navigator'
-Plugin 'terryma/vim-multiple-cursors'
-Plugin 'rking/ag.vim'
-Plugin 'vim-scripts/ctags.vim'
-Plugin 'vim-scripts/taglist.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'junegunn/limelight.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': 'yes \| ./install' }
+Plug 'junegunn/fzf.vim'
+Plug 'bling/vim-airline'
+Plug 'edkolev/tmuxline.vim'
+Plug 'christoomey/vim-tmux-navigator'
 " C++ Plugins
-Plugin 'rhysd/vim-clang-format'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'scrooloose/syntastic'
-Plugin 'rdnetto/YCM-Generator'
-Plugin 'jeaye/color_coded'
-" Clojure Plugins
-Plugin 'vim-scripts/VimClojure'
-Plugin 'tpope/vim-fireplace'
-Plugin 'venantius/vim-cljfmt'
-Plugin 'tpope/vim-sexp-mappings-for-regular-people'
-Plugin 'guns/vim-sexp'
+Plug 'rhysd/vim-clang-format'
+Plug 'jeaye/color_coded'
 " Dash
-Plugin 'rizzatti/dash.vim'
-" Elm
-Plugin 'lambdatoast/elm.vim'
+Plug 'rizzatti/dash.vim'
 
-"All of your Plugins must be added before the following line
-call vundle#end()         " required
+" Add plugins to &runtimepath
+call plug#end()
+
 filetype indent plugin on " required
 
 " Enable syntax highlighting
 syntax on
 
-" Better command-line completion
-set wildmenu
+" Set colorscheme
+set t_Co=256
+colorscheme base16-eighties
+set background=dark
+highlight clear SignColumn
+highlight VertSplit    ctermbg=236
+highlight ColorColumn  ctermbg=237
+highlight LineNr       ctermbg=236 ctermfg=240
+highlight CursorLineNr ctermbg=236 ctermfg=240
+highlight CursorLine   ctermbg=236
+highlight StatusLineNC ctermbg=238 ctermfg=0
+highlight StatusLine   ctermbg=240 ctermfg=12
+highlight IncSearch    ctermbg=3   ctermfg=1
+highlight Search       ctermbg=1   ctermfg=3
+highlight Visual       ctermbg=3   ctermfg=0
+highlight Pmenu        ctermbg=240 ctermfg=12
+highlight PmenuSel     ctermbg=3   ctermfg=1
+highlight SpellBad     ctermbg=0   ctermfg=1
 
-" Display line numbers
-set number
-
-" Command window height to 2 lines
-set cmdheight=2
-
-" Use case insensitive matching
-set ignorecase
-set smartcase
+let mapleader = ","
+set tags=./tags;/
 
 " Autoindent on and other indentation settings
-set autoindent
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set smarttab
 set expandtab
 
-" Allow backspacing over autoindent, line breaks and start of insert
+set encoding=utf-8
+set scrolloff=3
+set autoindent
+set showmode
+set showcmd
+set hidden
+set wildmenu
+set wildmode=list:longest
+set visualbell
+set cursorline
+"set ttyfast
+set ruler
 set backspace=indent,eol,start
+set laststatus=2
+set relativenumber
+set undofile
 
-"Change directory to the current buffer when opening files.
-set autochdir
+" sane searching
+nnoremap / /\v
+vnoremap / /\v
+set ignorecase
+set smartcase
+set gdefault
+set incsearch
+set showmatch
+set hlsearch
+nnoremap <leader><space> :noh<cr>
 
-" Set colorscheme
-let base16colorspace=256  " Access colors present in 256 colorspace
-colorscheme base16-monokai
+" disable arrow keys
+nnoremap <up> <nop>
+nnoremap <down> <nop>
+nnoremap <left> <nop>
+nnoremap <right> <nop>
+inoremap <up> <nop>
+inoremap <down> <nop>
+inoremap <left> <nop>
+inoremap <right> <nop>
+nnoremap j gj
+nnoremap k gk
 
+" better buffer navigation via tab
+nnoremap <Tab> :bnext<cr>
+nnoremap <S-Tab> :bprevious<cr>
+
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>p :Files<cr>
+nnoremap <C-p> :Files<cr>
+nnoremap <leader>r :BTags<cr>
+nnoremap <leader>b :w<cr>:Make<cr>
+nnoremap <leader>n :cn<cr>
+nnoremap <leader>nn :cp<cr>
+nnoremap ; :
+au FocusLost * :wa
+
+" Status line fiddling
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
+set laststatus=2
+let g:airline_theme='bubblegum'
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:ycm_show_diagnostics_ui = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-
-" Better make
-:let &makeprg='[[ -d build ]] &&cmake --build build || cmake --build ../build'
-
-let mapleader = ","
-set tags=./tags,tags;$HOME
-nnoremap <leader>. :CtrlPTag<cr>
+" Clang format settings
+let g:clang_format#auto_format=1
+let g:clang_format#auto_format_on_insert_leave=1
