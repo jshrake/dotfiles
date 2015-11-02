@@ -68,9 +68,9 @@ set showcmd
 set hidden
 set wildmenu
 set wildmode=list:longest
-set visualbell
+"set visualbell
 set cursorline
-"set ttyfast
+set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
@@ -109,6 +109,7 @@ nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>p :Files<cr>
 nnoremap <C-p> :Files<cr>
 nnoremap <leader>r :BTags<cr>
+nnoremap <leader>l :Lines<cr>
 nnoremap <leader>b :w<cr>:Make<cr>
 nnoremap <leader>n :cn<cr>
 nnoremap <leader>nn :cp<cr>
