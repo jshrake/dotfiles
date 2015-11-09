@@ -4,6 +4,11 @@ filetype off " required for vundle
 call plug#begin('~/.vim/plugged')
 " Themes
 Plug 'chriskempson/base16-vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
+Plug 'junegunn/seoul256.vim'
+Plug 'flazz/vim-colorschemes'
+Plug 'NLKNguyen/papercolor-theme'
 " Misc Plugins
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
@@ -17,11 +22,18 @@ Plug 'junegunn/fzf.vim'
 Plug 'bling/vim-airline'
 Plug 'edkolev/tmuxline.vim'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'airblade/vim-rooter'
+Plug 'airblade/vim-gitgutter'
+Plug 'majutsushi/tagbar'
 " C++ Plugins
 Plug 'rhysd/vim-clang-format'
 Plug 'jeaye/color_coded'
+" Go Plugins
+Plug 'fatih/vim-go'
 " Dash
 Plug 'rizzatti/dash.vim'
+" Syntax
+Plug 'cespare/vim-toml'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -33,22 +45,9 @@ syntax on
 
 " Set colorscheme
 set t_Co=256
-colorscheme base16-eighties
 set background=dark
+colo seoul256
 highlight clear SignColumn
-highlight VertSplit    ctermbg=236
-highlight ColorColumn  ctermbg=237
-highlight LineNr       ctermbg=236 ctermfg=240
-highlight CursorLineNr ctermbg=236 ctermfg=240
-highlight CursorLine   ctermbg=236
-highlight StatusLineNC ctermbg=238 ctermfg=0
-highlight StatusLine   ctermbg=240 ctermfg=12
-highlight IncSearch    ctermbg=3   ctermfg=1
-highlight Search       ctermbg=1   ctermfg=3
-highlight Visual       ctermbg=3   ctermfg=0
-highlight Pmenu        ctermbg=240 ctermfg=12
-highlight PmenuSel     ctermbg=3   ctermfg=1
-highlight SpellBad     ctermbg=0   ctermfg=1
 
 let mapleader = ","
 set tags=./tags;/
@@ -68,7 +67,6 @@ set showcmd
 set hidden
 set wildmenu
 set wildmode=list:longest
-"set visualbell
 set cursorline
 set ttyfast
 set ruler
@@ -101,27 +99,37 @@ nnoremap j gj
 nnoremap k gk
 
 " better buffer navigation via tab
-nnoremap <Tab> :bnext<cr>
-nnoremap <S-Tab> :bprevious<cr>
+nnoremap <Tab> :cnext<cr>
+nnoremap <S-Tab> :cprevious<cr>
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
 nnoremap <leader>p :Files<cr>
 nnoremap <C-p> :Files<cr>
-nnoremap <leader>r :BTags<cr>
-nnoremap <leader>l :Lines<cr>
+nnoremap <leader>r :Tags<cr>
+nnoremap <leader>f :Ag 
 nnoremap <leader>b :w<cr>:Make<cr>
 nnoremap <leader>n :cn<cr>
 nnoremap <leader>nn :cp<cr>
+noremap <leader>g :GitGutterSignsToggle<cr>
+nmap <leader>, :TagbarToggle<CR>
 nnoremap ; :
 au FocusLost * :wa
 
 " Status line fiddling
-set statusline+=%#warningmsg#
-set statusline+=%*
 set laststatus=2
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='bubblegum'
+" tagbar
+let g:airline#extensions#tagbar#enabled = 1
+let g:tagbar_autofocus=1
+let g:tagbar_left=1
+let g:tagbar_vertical=30
+let g:tagbar_autoclose=1
 
 " Clang format settings
 let g:clang_format#auto_format=1
-let g:clang_format#auto_format_on_insert_leave=1
+
+set wildignore+=*.swp,*.sw?,*.un~
