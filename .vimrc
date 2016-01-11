@@ -19,6 +19,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'airblade/vim-rooter'
 Plug 'airblade/vim-gitgutter'
+Plug 'kien/ctrlp.vim'
 " C++ Plugins
 Plug 'rhysd/vim-clang-format'
 " Go Plugins
@@ -105,6 +106,7 @@ nnoremap <leader>b :w<cr>:Make<cr>
 nnoremap <leader>n :cn<cr>
 nnoremap <leader>nn :cp<cr>
 noremap <leader>g :GitGutterSignsToggle<cr>
+nnoremap <leader>. :CtrlPTag<cr>
 nnoremap ; :
 au FocusLost * :wa
 
