@@ -15,6 +15,7 @@ Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-abolish'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'airblade/vim-rooter'
@@ -44,7 +45,7 @@ syntax on
 " Set colorscheme
 set t_Co=256
 set background=dark
-colo Tomorrow-Night-Eighties 
+colo Tomorrow-Night-Bright
 highlight clear SignColumn
 
 let mapleader = ","
@@ -83,6 +84,10 @@ set incsearch
 set showmatch
 set hlsearch
 nnoremap <leader><space> :noh<cr>
+
+" per-project vimrc files
+set exrc
+set secure
 
 " disable arrow keys
 nnoremap <up> <nop>
