@@ -21,12 +21,16 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'airblade/vim-rooter'
 Plug 'airblade/vim-gitgutter'
 Plug 'kien/ctrlp.vim'
+Plug 'Valloric/YouCompleteMe'
 " C++ Plugins
 Plug 'rhysd/vim-clang-format'
+Plug 'lyuts/vim-rtags'
 " Go Plugins
 Plug 'fatih/vim-go'
 " Dash
 Plug 'rizzatti/dash.vim'
+" Rust
+Plug 'rust-lang/rust.vim'
 " Clojure
 Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-fireplace'
