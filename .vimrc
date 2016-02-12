@@ -22,9 +22,12 @@ Plug 'airblade/vim-rooter'
 Plug 'airblade/vim-gitgutter'
 Plug 'kien/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe'
+Plug 'scrooloose/syntastic'
 " C++ Plugins
 Plug 'rhysd/vim-clang-format'
+Plug 'jeaye/color_coded'
 Plug 'lyuts/vim-rtags'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 " Go Plugins
 Plug 'fatih/vim-go'
 " Dash
@@ -37,6 +40,10 @@ Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'kien/rainbow_parentheses.vim'
+" GLSL
+Plug 'tikhomirov/vim-glsl'
+" TOML
+Plug 'cespare/vim-toml'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -123,3 +130,12 @@ au FocusLost * :wa
 let g:clang_format#auto_format=1
 
 set wildignore+=*.swp,*.sw?,*.un~
+let g:ycm_autoclose_preview_window_after_completion = 1
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
