@@ -23,6 +23,12 @@ Plug 'airblade/vim-gitgutter'
 Plug 'kien/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/syntastic'
+"Plug 'vimwiki/vimwiki'
+Plug 'lotabout/vimwiki-1'
+
+" Airline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " C++ Plugins
 Plug 'rhysd/vim-clang-format'
 Plug 'jeaye/color_coded'
@@ -139,3 +145,12 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" wiki settings
+let wiki = {}
+let wiki.path = '~/src/til'
+let wiki.index = 'README'
+let wiki.syntax = 'markdown'
+let wiki.ext = '.md'
+let g:vimwiki_list = [wiki]
+
