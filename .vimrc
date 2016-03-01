@@ -20,12 +20,11 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'airblade/vim-rooter'
 Plug 'airblade/vim-gitgutter'
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/syntastic'
-"Plug 'vimwiki/vimwiki'
-Plug 'lotabout/vimwiki-1'
-
+Plug 'vimwiki/vimwiki'
+Plug 'rking/ag.vim'
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -33,23 +32,25 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'rhysd/vim-clang-format'
 Plug 'jeaye/color_coded'
 Plug 'lyuts/vim-rtags'
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'}
 " Go Plugins
 Plug 'fatih/vim-go'
 " Dash
 Plug 'rizzatti/dash.vim'
 " Rust
 Plug 'rust-lang/rust.vim'
+" Julia
+Plug 'JuliaLang/julia-vim'
 " Clojure
 Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
-Plug 'kien/rainbow_parentheses.vim'
 " GLSL
 Plug 'tikhomirov/vim-glsl'
 " TOML
 Plug 'cespare/vim-toml'
+" C#
+Plug 'OmniSharp/omnisharp-vim'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -61,8 +62,7 @@ syntax on
 
 " Set colorscheme
 set t_Co=256
-set background=dark
-colo Tomorrow-Night-Bright
+colo hybrid
 highlight clear SignColumn
 
 let mapleader = ","
@@ -154,3 +154,38 @@ let wiki.syntax = 'markdown'
 let wiki.ext = '.md'
 let g:vimwiki_list = [wiki]
 
+" Rustfmt
+let g:rustfmt_autosave = 1
+
+" Omnisharp
+set completeopt=longest,menuone,preview
+let g:OmniSharp_selector_ui = 'ctrlp'  " Use ctrlp.vim
+let g:omnicomplete_fetch_documentation=1
+set splitbelow
+augroup omnisharp_commands
+    autocmd!
+    " Builds can also run asynchronously with vim-dispatch installed
+    autocmd FileType cs nnoremap <leader>b :wa!<cr>:OmniSharpBuildAsync<cr>
+    " Automatically add new cs files to the nearest project on save
+    autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+    "show type information automatically when the cursor stops moving
+
+    "The following commands are contextual, based on the current cursor position.
+
+    autocmd FileType cs nnoremap gd :OmniSharpGotoDefinition<cr>
+    autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementations<cr>
+    autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<cr>
+    autocmd FileType cs nnoremap <leader>fs :OmniSharpFindSymbol<cr>
+    autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
+    "finds members in the current buffer
+    autocmd FileType cs nnoremap <leader>fm :OmniSharpFindMembers<cr>
+    " cursor can be anywhere on the line containing an issue
+    autocmd FileType cs nnoremap <leader>x  :OmniSharpFixIssue<cr>
+    autocmd FileType cs nnoremap <leader>fx :OmniSharpFixUsings<cr>
+    autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
+    autocmd FileType cs nnoremap <leader>dc :OmniSharpDocumentation<cr>
+    "navigate up by method/property/field
+    autocmd FileType cs nnoremap <C-K> :OmniSharpNavigateUp<cr>
+    "navigate down by method/property/field
+    autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr>
+augroup END
