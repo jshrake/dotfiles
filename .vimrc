@@ -22,7 +22,6 @@ Plug 'airblade/vim-rooter'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe'
-Plug 'scrooloose/syntastic'
 Plug 'vimwiki/vimwiki'
 Plug 'rking/ag.vim'
 " Airline
@@ -137,14 +136,6 @@ let g:clang_format#auto_format=1
 
 set wildignore+=*.swp,*.sw?,*.un~
 let g:ycm_autoclose_preview_window_after_completion = 1
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 
 " wiki settings
 let wiki = {}
@@ -168,7 +159,6 @@ augroup omnisharp_commands
     autocmd FileType cs nnoremap <leader>b :wa!<cr>:OmniSharpBuildAsync<cr>
     " Automatically add new cs files to the nearest project on save
     autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-    "show type information automatically when the cursor stops moving
 
     "The following commands are contextual, based on the current cursor position.
 
