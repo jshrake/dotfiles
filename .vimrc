@@ -17,7 +17,6 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --racer-completer --clang-completer --gocode-complete' }
 Plug 'vimwiki/vimwiki'
 Plug 'rking/ag.vim'
-Plug 'jceb/vim-orgmode'
 " C++ Plugins
 Plug 'rhysd/vim-clang-format'
 Plug 'lyuts/vim-rtags'
@@ -47,9 +46,7 @@ filetype indent plugin on " required
 " Enable syntax highlighting
 syntax enable
 set t_Co=256
-let g:seoul256_background = 233
-colorscheme seoul256
-set background=dark
+colorscheme base16-eighties
 
 let mapleader = ","
 set tags=./tags;/
@@ -110,7 +107,7 @@ nnoremap <S-Tab> :cprevious<cr>
 
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
-nnoremap <leader>b :w<cr>:make<cr>
+nnoremap <leader>b :w<cr>:Make<cr>
 nnoremap <leader>n :cn<cr>
 nnoremap <leader>nn :cp<cr>
 nnoremap <leader>. :CtrlPTag<cr>
