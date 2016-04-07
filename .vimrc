@@ -46,7 +46,8 @@ filetype indent plugin on " required
 " Enable syntax highlighting
 syntax enable
 set t_Co=256
-colorscheme base16-eighties
+colorscheme seoul256
+highlight clear SignColumn
 
 let mapleader = ","
 set tags=./tags;/
