@@ -17,6 +17,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --racer-completer --clang-completer --gocode-complete' }
 Plug 'vimwiki/vimwiki'
 Plug 'rking/ag.vim'
+Plug 'majutsushi/tagbar'
 " C++ Plugins
 Plug 'rhysd/vim-clang-format'
 Plug 'lyuts/vim-rtags'
@@ -59,7 +60,6 @@ set softtabstop=2
 set smarttab
 set expandtab
 
-set encoding=utf-8
 set scrolloff=3
 set autoindent
 set showmode
@@ -112,6 +112,8 @@ nnoremap <leader>b :w<cr>:Make<cr>
 nnoremap <leader>n :cn<cr>
 nnoremap <leader>nn :cp<cr>
 nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <silent> <leader>/ :TagbarToggle<CR>
+
 nnoremap ; :
 au FocusLost * :wa
 
@@ -120,6 +122,7 @@ let g:clang_format#auto_format=1
 
 set wildignore+=*.swp,*.sw?,*.un~
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ctrlp_custom_ignore = 'build\|DS_Store\|git'
 
 " wiki settings
 let wiki = {}
