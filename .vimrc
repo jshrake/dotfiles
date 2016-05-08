@@ -2,6 +2,7 @@ call plug#begin('~/.vim/plugged')
 " Themes
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
+Plug 'zenorocha/dracula-theme', {'rtp': 'vim'}
 " Misc Plugins
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
@@ -21,6 +22,7 @@ Plug 'majutsushi/tagbar'
 " C++ Plugins
 Plug 'rhysd/vim-clang-format'
 Plug 'lyuts/vim-rtags'
+"Plug 'jeaye/color_coded', { 'do': 'mkdir -p build; cmake -H. -Bbuild; cmake --build build; make install -C build; make clean -C build; make clean_clang -C build' }
 " Go Plugins
 Plug 'fatih/vim-go'
 " Dash
@@ -47,7 +49,7 @@ filetype indent plugin on " required
 " Enable syntax highlighting
 syntax enable
 set t_Co=256
-colorscheme seoul256
+colorscheme dracula
 highlight clear SignColumn
 
 let mapleader = ","
