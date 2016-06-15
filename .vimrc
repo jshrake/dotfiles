@@ -2,7 +2,7 @@ call plug#begin('~/.vim/plugged')
 " Themes
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
-Plug 'zenorocha/dracula-theme', {'rtp': 'vim'}
+Plug 'dracula/vim'
 " Misc Plugins
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
@@ -19,10 +19,11 @@ Plug 'Valloric/YouCompleteMe', { 'do': './install.py --racer-completer --clang-c
 Plug 'vimwiki/vimwiki'
 Plug 'rking/ag.vim'
 Plug 'majutsushi/tagbar'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " C++ Plugins
 Plug 'rhysd/vim-clang-format'
 Plug 'lyuts/vim-rtags'
-"Plug 'jeaye/color_coded', { 'do': 'mkdir -p build; cmake -H. -Bbuild; cmake --build build; make install -C build; make clean -C build; make clean_clang -C build' }
+Plug 'jeaye/color_coded', { 'do': 'mkdir -p build; cmake -H. -Bbuild; cmake --build build; make install -C build; make clean -C build; make clean_clang -C build' }
 " Go Plugins
 Plug 'fatih/vim-go'
 " Dash
@@ -48,7 +49,6 @@ filetype indent plugin on " required
 
 " Enable syntax highlighting
 syntax enable
-set t_Co=256
 colorscheme dracula
 highlight clear SignColumn
 
@@ -135,4 +135,5 @@ let wiki.ext = '.md'
 let g:vimwiki_list = [wiki]
 
 " Rustfmt
-let g:rustfmt_autosave = 1
+autocmd BufRead,BufNewFile Cargo.toml,Cargo.lock,*.rs compiler cargo
+
