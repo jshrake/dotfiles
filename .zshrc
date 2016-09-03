@@ -85,3 +85,5 @@ source $ZSH/oh-my-zsh.sh
 export EDITOR=nvim
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+alias wttr="curl wttr.in"

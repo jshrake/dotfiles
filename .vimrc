@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'chriskempson/base16-vim'
 Plug 'junegunn/seoul256.vim'
 Plug 'dracula/vim'
+Plug 'morhetz/gruvbox'
 " Misc Plugins
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
@@ -15,15 +16,14 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'airblade/vim-rooter'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --racer-completer --clang-completer --gocode-complete' }
-Plug 'vimwiki/vimwiki'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer --gocode-complete --omnisharp-completer' }
 Plug 'rking/ag.vim'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'ntpeters/vim-better-whitespace'
 " C++ Plugins
 Plug 'rhysd/vim-clang-format'
 Plug 'lyuts/vim-rtags'
-Plug 'jeaye/color_coded', { 'do': 'mkdir -p build; cmake -H. -Bbuild; cmake --build build; make install -C build; make clean -C build; make clean_clang -C build' }
 " Go Plugins
 Plug 'fatih/vim-go'
 " Dash
@@ -36,11 +36,18 @@ Plug 'JuliaLang/julia-vim'
 Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
+Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " GLSL
 Plug 'tikhomirov/vim-glsl'
 " TOML
 Plug 'cespare/vim-toml'
+" racket
+Plug 'wlangstroth/vim-racket'
+Plug 'vim-scripts/paredit.vim'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'jpalardy/vim-slime'
+Plug 'vim-scripts/scribble.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -49,7 +56,9 @@ filetype indent plugin on " required
 
 " Enable syntax highlighting
 syntax enable
-colorscheme dracula
+set termguicolors
+set background=dark
+colorscheme gruvbox
 highlight clear SignColumn
 
 let mapleader = ","
@@ -62,27 +71,22 @@ set softtabstop=2
 set smarttab
 set expandtab
 
-set scrolloff=3
+set scrolloff=5
 set autoindent
 set showmode
 set showcmd
 set hidden
 set wildmenu
 set wildmode=list:longest
-set cursorline
-set ttyfast
-set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set relativenumber
+set cursorline
 set undofile
 
 " sane searching
 nnoremap / /\v
 vnoremap / /\v
-set ignorecase
 set smartcase
-set gdefault
 set incsearch
 set showmatch
 set hlsearch
@@ -123,17 +127,21 @@ au FocusLost * :wa
 let g:clang_format#auto_format=1
 
 set wildignore+=*.swp,*.sw?,*.un~
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ctrlp_custom_ignore = 'build\|DS_Store\|git'
+let g:ctrlp_custom_ignore = 'build\|DS_Store\|.git'
 
-" wiki settings
-let wiki = {}
-let wiki.path = '~/src/til'
-let wiki.index = 'README'
-let wiki.syntax = 'markdown'
-let wiki.ext = '.md'
-let g:vimwiki_list = [wiki]
+" Racket
+  " By default vim will indent arguments after the function name
+  " but sometimes you want to only indent by 2 spaces similar to
+  " how DrRacket indents define. Set the `lispwords' variable to
+  " add function names that should have this type of indenting.
+set lispwords+=public-method,override-method,private-method,syntax-case,syntax-rules
+set lispwords+=..more..
+autocmd filetype lisp,scheme,art setlocal equalprg=scmindent.rkt
 
-" Rustfmt
-autocmd BufRead,BufNewFile Cargo.toml,Cargo.lock,*.rs compiler cargo
-
+let g:slime_target = "tmux"
+let g:slime_paste_file = tempname()
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+autocmd BufWritePre * StripWhitespace
