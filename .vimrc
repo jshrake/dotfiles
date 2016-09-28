@@ -23,6 +23,7 @@ Plug 'rking/ag.vim'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'scrooloose/syntastic'
 " C++ Plugins
 Plug 'rhysd/vim-clang-format'
 Plug 'lyuts/vim-rtags'
@@ -32,23 +33,27 @@ Plug 'fatih/vim-go'
 Plug 'rizzatti/dash.vim'
 " Rust
 Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 " Julia
 Plug 'JuliaLang/julia-vim'
 " Clojure
 Plug 'guns/vim-clojure-static'
 Plug 'tpope/vim-fireplace'
 Plug 'venantius/vim-cljfmt'
-Plug 'guns/vim-sexp'
-Plug 'tpope/vim-sexp-mappings-for-regular-people'
+"Plug 'guns/vim-sexp'
+"Plug 'tpope/vim-sexp-mappings-for-regular-people'
 " racket
 Plug 'wlangstroth/vim-racket'
-Plug 'vim-scripts/paredit.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'jpalardy/vim-slime'
 " GLSL
 Plug 'tikhomirov/vim-glsl'
 " TOML
 Plug 'cespare/vim-toml'
+" Processing
+Plug 'sophacles/vim-processing'
+" Julia
+Plug 'JuliaLang/julia-vim'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -57,9 +62,7 @@ filetype indent plugin on " required
 
 " Enable syntax highlighting
 syntax enable
-set background=dark
-colorscheme solarized
-highlight clear SignColumn
+colorscheme dracula
 
 let mapleader = ","
 set tags=./tags;/
@@ -83,7 +86,8 @@ set ttyfast
 set ruler
 set backspace=indent,eol,start
 set laststatus=2
-set relativenumber
+set norelativenumber
+set nonumber
 set undofile
 
 " sane searching
@@ -124,6 +128,7 @@ nnoremap <leader>n :cn<cr>
 nnoremap <leader>nn :cp<cr>
 nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <silent> <leader>/ :TagbarToggle<CR>
+nmap <silent> <leader>d <Plug>DashSearch
 
 nnoremap ; :
 au FocusLost * :wa
@@ -135,21 +140,30 @@ set wildignore+=*.swp,*.sw?,*.un~
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ctrlp_custom_ignore = 'build\|DS_Store\|git'
 
-autocmd BufWritePre * StripWhitespace
 
-" Rustfmt
+" Rust
+"let g:rustfmt_autosave = 1
 autocmd BufRead,BufNewFile Cargo.toml,Cargo.lock,*.rs compiler cargo
+let g:racer_cmd="racer"
+let $RUST_SRC_PATH="/Users/justin/src/rust-src/rust-1.11.0/src"
+set omnifunc=syntaxcomplete#Complete
 
 " slime
 let g:slime_target = "tmux"
 let g:slime_paste_file = tempname()
 
-"Racket
+" sexp
+let g:sexp_enable_insert_mode_mappings = 0
 
-" By default vim will indent arguments after the function name
-" but sometimes you want to only indent by 2 spaces similar to
-" how DrRacket indents define. Set the `lispwords' variable to
-" add function names that should have this type of indenting.
-set lispwords+=public-method,override-method,private-method,syntax-case,syntax-rules
-set lispwords+=..more..
-autocmd filetype lisp,scheme,art setlocal equalprg=scmindent.rkt
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+" guifont
+set guifont=Source\ Code\ Pro:h12
