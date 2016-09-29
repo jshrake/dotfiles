@@ -132,6 +132,7 @@ nmap <silent> <leader>d <Plug>DashSearch
 
 nnoremap ; :
 au FocusLost * :wa
+autocmd BufWritePre * StripWhitespace
 
 " Clang format settings
 let g:clang_format#auto_format=1
@@ -145,7 +146,6 @@ let g:ctrlp_custom_ignore = 'build\|DS_Store\|git'
 "let g:rustfmt_autosave = 1
 autocmd BufRead,BufNewFile Cargo.toml,Cargo.lock,*.rs compiler cargo
 let g:racer_cmd="racer"
-let $RUST_SRC_PATH="/Users/justin/src/rust-src/rust-1.11.0/src"
 set omnifunc=syntaxcomplete#Complete
 
 " slime
