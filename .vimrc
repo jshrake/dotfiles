@@ -24,6 +24,8 @@ Plug 'majutsushi/tagbar'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'scrooloose/syntastic'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " C++ Plugins
 Plug 'rhysd/vim-clang-format'
 Plug 'lyuts/vim-rtags'
@@ -46,6 +48,8 @@ Plug 'venantius/vim-cljfmt'
 Plug 'wlangstroth/vim-racket'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'jpalardy/vim-slime'
+Plug 'vim-scripts/paredit.vim'
+
 " GLSL
 Plug 'tikhomirov/vim-glsl'
 " TOML
@@ -99,6 +103,7 @@ set gdefault
 set incsearch
 set showmatch
 set hlsearch
+set number
 nnoremap <leader><space> :noh<cr>
 
 " per-project vimrc files
@@ -130,17 +135,16 @@ nnoremap <leader>. :CtrlPTag<cr>
 nnoremap <silent> <leader>/ :TagbarToggle<CR>
 nmap <silent> <leader>d <Plug>DashSearch
 
-nnoremap ; :
 au FocusLost * :wa
 autocmd BufWritePre * StripWhitespace
+
+set wildignore+=*.swp,*.sw?,*.un~
 
 " Clang format settings
 let g:clang_format#auto_format=1
 
-set wildignore+=*.swp,*.sw?,*.un~
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ctrlp_custom_ignore = 'build\|DS_Store\|git'
-
 
 " Rust
 "let g:rustfmt_autosave = 1
@@ -165,5 +169,9 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" airline
+let g:airline_theme='dracula'
+
 " guifont
 set guifont=Source\ Code\ Pro:h12
+set clipboard=unnamed
