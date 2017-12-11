@@ -3,6 +3,7 @@
 ln -fs $(pwd)/.zshrc ${HOME}/.
 ln -fs $(pwd)/.vimrc ${HOME}/.
 ln -fs $(pwd)/.tmux.conf ${HOME}/.
+ln -fs $(pwd)/.zshenv ${HOME}/.
 
 # install the pure prompt
 npm install --global pure-prompt
