@@ -5,6 +5,8 @@ Plug 'junegunn/seoul256.vim'
 Plug 'dracula/vim'
 Plug 'morhetz/gruvbox'
 Plug 'altercation/vim-colors-solarized'
+" wiki
+Plug 'vimwiki/vimwiki'
 " Misc Plugins
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'

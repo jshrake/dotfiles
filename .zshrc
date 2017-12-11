@@ -31,6 +31,7 @@ source ${HOME}/.fzf.zsh
 
 # exports
 export EDITOR=nvim
+export PATH="/usr/local/bin:$PATH"
 
 # evals
 eval "$(aactivator init)"
