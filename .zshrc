@@ -17,8 +17,6 @@ autoload -U compinit; compinit
 
 # alias
 alias ls='ls -G'
-alias vi='nvim'
-alias vim='nvim'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -29,13 +27,8 @@ source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source ${HOME}/.fzf.zsh
 
-# exports
-export EDITOR=nvim
-export PATH="/usr/local/bin:$PATH"
-
-# evals
-eval "$(aactivator init)"
-
 # fix ctrl-a and ctrl-e not working in tmux
 # See https://superuser.com/a/523973
 bindkey -e
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

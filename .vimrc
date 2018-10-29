@@ -8,6 +8,7 @@ Plug 'altercation/vim-colors-solarized'
 " wiki
 Plug 'vimwiki/vimwiki'
 " Misc Plugins
+Plug 'vimwiki/vimwiki'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-dispatch'
@@ -68,6 +69,8 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'slashmili/alchemist.vim'
 " Typescript
 Plug 'leafgarland/typescript-vim'
+" Swift
+Plug 'keith/swift.vim'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -76,7 +79,12 @@ filetype indent plugin on " required
 
 " Enable syntax highlighting
 syntax enable
+
+" highlight fixes weird color issue w/ dracula in iterm2
+" From https://github.com/dracula/vim/issues/65#issuecomment-377496609
+let g:dracula_italic = 0
 colorscheme dracula
+highlight Normal ctermbg=None
 
 let mapleader = ","
 set tags=./tags;/
@@ -155,8 +163,8 @@ set wildignore+=*/.git/*,*.swp,*.sw?,*.un~
 let g:clang_format#auto_format=1
 
 let g:ycm_python_binary_path = 'python3'
-let g:ycm_rust_src_path = '/Users/justin/src/rust-src/rust-1.20.0/src'
-let g:rust_src_path = '/Users/justin/src/rust-src/rust-1.20.0/src'
+let g:ycm_rust_src_path = '/Users/justin/code/rust-src/rust-1.29.0/src'
+let g:rust_src_path = '/Users/justin/code/rust-src/rust-1.29.0/src'
 
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ctrlp_custom_ignore = 'build\|DS_Store\|git'
@@ -169,7 +177,6 @@ endif
 
 " Rust
 let g:rustfmt_autosave = 1
-autocmd BufRead,BufNewFile Cargo.toml,Cargo.lock,*.rs compiler cargo
 let g:racer_cmd="racer"
 set omnifunc=syntaxcomplete#Complete
 
@@ -197,3 +204,9 @@ let g:airline_theme='dracula'
 " guifont
 set guifont=Source\ Code\ Pro:h12
 set clipboard=unnamed
+
+let g:vimwiki_list = [
+                        \{'path': '~/Dropbox/vimwiki/'},
+                \]
+
+au BufRead,BufNewFile *.md.html set filetype=markdown
